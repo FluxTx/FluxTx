@@ -1,0 +1,26 @@
+{
+  "name": "@fluxtx/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "wrangler deploy --dry-run",
+    "db:migrate:local": "wrangler d1 migrations apply fluxtx --local",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fluxtx/core": "0.1.0",
+    "hono": "^4.10.6",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261104.1",
+    "@types/node": "^26.6.6",
+    "miniflare": "5.20261103.0-beta",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.8",
+    "wrangler": "^4.45.0"
+  }
+}
