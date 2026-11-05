@@ -43,7 +43,7 @@ Email verification delivery and password reset require an email integration that
 
 ## Development
 > [!WARNING]
-> **Read [LEGAL-NOTICE-AND-CONTRIBUTING.md](LEGAL-NOTICE-AND-CONTRIBUTING.md) when development this project.**
+> Read [LEGAL-NOTICE-AND-CONTRIBUTING.md](LEGAL-NOTICE-AND-CONTRIBUTING.md) when development this project.
 
 
 
