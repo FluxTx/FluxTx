@@ -42,6 +42,10 @@ Current foundations include:
 Email verification delivery and password reset require an email integration that is not yet implemented.
 
 ## Development
+> [!WARNING]
+> **Read [LEGAL-NOTICE-AND-CONTRIBUTING.md](LEGAL-NOTICE-AND-CONTRIBUTING.md) when development this project.**
+
+
 
 **Requirements:** Node.js 20+ and npm.
 
