@@ -1,12 +1,48 @@
 # FluxTx
 
-Open-source, non-custodial payment infrastructure for monitoring and reconciling blockchain payments.
+<div align="center">
+  <img src="assets/fluxtx-banner.png" alt="FluxTx Logo" width="180" />
 
-FluxTx is under active development and is **NOT PRODUCTION READY**. No blockchain adapter has passed the real-network verification required for `SUPPORTED` status; all listed networks are currently `PLANNED`. This repository includes a TypeScript domain foundation, Cloudflare Worker API, D1 schema, and initial browser session/API-key workflows. It does not yet create or verify blockchain payments. Email verification delivery and password reset also require an email integration that is not implemented.
+  **One API. Every Chain. Payments in Motion.**
+
+  Open-source, non-custodial infrastructure for monitoring and reconciling blockchain payments.
+
+  <p>
+    <img src="https://img.shields.io/badge/status-alpha-orange?style=flat-square" alt="Alpha" />
+    <img src="https://img.shields.io/badge/production-not%20ready-red?style=flat-square" alt="Not Production Ready" />
+    <img src="https://img.shields.io/badge/TypeScript-Ready-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Cloudflare-Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare Workers" />
+    <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License" />
+  </p>
+</div>
+
+---
+
+> [!WARNING]
+> **FluxTx is under active development and is NOT PRODUCTION READY.**
+>
+> No blockchain adapter has passed real-network verification. All listed networks are currently `PLANNED`. The current implementation does not create or verify real blockchain payments. Simulator transactions are synthetic and have no monetary value.
+
+## Overview
+
+FluxTx is an open-source, developer-first payment infrastructure project designed to simplify blockchain payment monitoring and reconciliation through a unified API.
+
+Current foundations include:
+
+- TypeScript payment domain and state management.
+- Hono API running on Cloudflare Workers.
+- Cloudflare D1 database and migrations.
+- User authentication and browser sessions.
+- Project and API key management.
+- Initial payment lifecycle and test simulator.
+- Next.js merchant dashboard.
+- OpenAPI 3.1 specification.
+
+Email verification delivery and password reset require an email integration that is not yet implemented.
 
 ## Development
 
-Requirements: Node.js 20+ and npm. Docker is optional and is not available in the current development environment.
+**Requirements:** Node.js 20+ and npm.
 
 ```powershell
 npm install
@@ -14,46 +50,98 @@ npm test
 npm run typecheck
 ```
 
-`npm test` includes Miniflare D1 integration tests that apply the checked-in migrations and verify auth/session behavior, project isolation, API-key revocation, invoice idempotency, transaction reads, and the test simulator lifecycle.
+Integration tests use Miniflare D1 to verify migrations, authentication, project isolation, API key revocation, invoice idempotency, transaction reads, and simulator workflows.
 
-Start a local API and dashboard:
+### Run locally
 
 ```powershell
-# Apply the D1 migrations once.
+# Apply local D1 migrations
 npm run db:migrate:local --workspace @fluxtx/api
 
-# Configure the dashboard's server-side API proxy.
+# Configure dashboard API proxy
 Copy-Item apps/dashboard/.env.example apps/dashboard/.env.local
+```
 
-# Terminal 1
+Start the API:
+
+```powershell
 npm run dev --workspace @fluxtx/api
+```
 
-# Terminal 2
+Start the dashboard in another terminal:
+
+```powershell
 npm run dev --workspace @fluxtx/dashboard
 ```
 
-Open the dashboard at `http://localhost:3000`. Registration and login use the local API; the first registered account receives its initial organization and project. The dashboard provides authentication, a data-backed overview, project management, API-key creation/revocation, and persisted payment listing/details. It does not yet include the complete merchant-management feature set.
+Open **http://localhost:3000**.
 
-The API exposes `GET /v1/health`, `GET /v1/networks`, registration/login, browser sessions, organization/project setup, API key issuance/revocation, project-scoped persisted invoices, and a session-authenticated dashboard overview. The networks response is a capability catalogue, not a claim that those chains can process payments.
+The first registered account receives its initial organization and project.
 
-Invoice creation is currently limited to the clearly labeled test simulator, which produces synthetic records with no monetary value; actual chain invoice creation is blocked until a verified adapter exists. See [API.md](./API.md) for implemented routes and explicit gaps.
+## API
 
-The current machine-readable API contract is available at `GET /v1/openapi.json`.
+Current endpoints and capabilities include:
 
-## Project layout
+- `GET /v1/health`
+- `GET /v1/networks`
+- Registration and login.
+- Browser session management.
+- Organization and project management.
+- API key issuance and revocation.
+- Project-scoped payment listing and retrieval.
+- Test-only invoice and transaction simulation.
+- `GET /v1/openapi.json`
 
-- `apps/api` — Hono API for Cloudflare Workers and D1.
-- `apps/dashboard` — Next.js dashboard foundation and same-origin API proxy.
-- `packages/core` — exact amount conversion, payment-state transitions, and network support metadata.
-- `IMPLEMENTATION_PLAN.md` — current architecture, phase status, and next steps.
-- `TASKS.md` — implementation checklist and known limitations.
+The network catalogue describes planned capabilities, not verified blockchain support.
 
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for design boundaries and current scope.
+See [API.md](./API.md) for implemented routes and limitations.
 
-## Security and custody
+## Project Structure
 
-FluxTx is designed to monitor merchant-controlled addresses; it must not request seed phrases or private keys. Until transaction verification, matching, webhook signing, and project isolation are implemented and reviewed, this code must not be used to process production payments.
+| Directory | Description |
+|---|---|
+| `apps/api` | Hono API, Cloudflare Workers and D1 |
+| `apps/dashboard` | Next.js merchant dashboard |
+| `packages/core` | Payment domain, exact amounts and network metadata |
+
+Additional documentation:
+
+- [Architecture](./ARCHITECTURE.md)
+- [API Documentation](./API.md)
+- [Implementation Plan](./IMPLEMENTATION_PLAN.md)
+- [Development Tasks](./TASKS.md)
+
+## Roadmap
+
+- Real blockchain adapters and testnet verification.
+- Transaction indexing and confirmation handling.
+- Payment reconciliation.
+- Signed webhooks and retry handling.
+- Email verification and password recovery.
+- Developer SDKs.
+- Hosted checkout.
+- Complete merchant dashboard.
+
+Networks will only be marked `SUPPORTED` after implementation and real-network verification.
+
+## Security & Custody
+
+FluxTx is designed to monitor merchant-controlled addresses without requesting seed phrases or private keys.
+
+Until transaction verification, matching, webhook signing, and project isolation have been fully implemented and reviewed, do not use this software to process production payments.
+
+## Contributing
+
+Contributions, bug reports, documentation improvements, and technical discussions are welcome.
+
+Please review the repository issues and contribution guidelines before submitting a pull request.
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+Released under the [MIT License](./LICENSE).
+
+---
+
+<div align="center">
+  **FluxTx — Payments in Motion.**
+</div>
