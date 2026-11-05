@@ -137,6 +137,16 @@ Contributions, bug reports, documentation improvements, and technical discussion
 
 Please review the repository issues and contribution guidelines before submitting a pull request.
 
+## Star History
+
+<a href="https://www.star-history.com/?repos=fluxtx%2Ffluxtx&type=date&legend=bottom-right">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=fluxtx/fluxtx&type=date&theme=dark&legend=top-right" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=fluxtx/fluxtx&type=date&legend=top-right" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=fluxtx/fluxtx&type=date&legend=top-right" />
+ </picture>
+</a>
+
 ## License
 
 Released under the [MIT License](./LICENSE).
