@@ -1,7 +1,8 @@
 # FluxTx
 
 <div align="center">
-  <img src="assets/FluxTx-banner.png" alt="FluxTx Logo" width="180" />
+  <img src="assets/FluxTx-banner.png" alt="FluxTx — One API. Every Chain. Payments in Motion." width="100%" />
+
 
   **One API. Every Chain. Payments in Motion.**
 
